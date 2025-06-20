@@ -1,12 +1,13 @@
 import "./App.css";
+import "./styles/MainBody.css";
 import Header from "./components/header";
-import Body from "./components/MainBody";
+import MenoryCard from "./components/MainBody";
 
 function App() {
   return (
     <>
       <Header />
-      <Body />
+      <MenoryCard />
     </>
   );
 }

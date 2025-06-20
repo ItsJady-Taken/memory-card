@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-function Body() {
+function MemoryCard() {
   const [posts, setPosts] = useState([]);
 
   const api = "https://pokeapi.co/api/v2/pokemon/riolu";
@@ -22,17 +22,15 @@ function Body() {
   }, []);
 
   return (
-    <div>
-      <h1>Body</h1>
-
-      <p>{posts.name}</p>
+    <div className="post-container">
       <img
         src={posts.sprites?.front_default}
-        className="App-logo"
+        className="post-image"
         alt="pokemon"
       />
+      <p className="post-name">{posts.name}</p>
     </div>
   );
 }
 
-export default Body;
+export default MemoryCard;

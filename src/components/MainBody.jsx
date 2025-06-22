@@ -1,36 +1,63 @@
 import { useState, useEffect } from "react";
 
 function MemoryCard() {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState({});
+  const [loading, setLoading] = useState(true);
 
-  const api = "https://pokeapi.co/api/v2/pokemon/riolu";
+  const handleClick = () => {
+    fetchPokemon().then((data) => {
+      setLoading(false);
+      setPosts(data);
+      console.log(data);
+    });
+  };
+
   useEffect(() => {
-    fetch(api)
-      .then((response) => {
-        if (!response.ok) {
-          console.log("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setPosts(data);
-        console.log(data);
-      })
-      .catch((error) =>
-        console.log("There was a problem with the fetch operation: " + error)
-      );
+    fetchPokemon().then((data) => {
+      setLoading(false);
+      setPosts(data);
+      console.log(data);
+      handleClick();
+    });
   }, []);
 
   return (
-    <div className="post-container">
-      <img
-        src={posts.sprites?.front_default}
-        className="post-image"
-        alt="pokemon"
-      />
-      <p className="post-name">{posts.name}</p>
+    <>
+      {loading ? (
+        <h1>Loading...</h1>
+      ) : (
+        <main>
+          <CardContainer
+            onClick={handleClick}
+            image={posts.sprites.front_default}
+            name={posts.name}
+          />
+          <CardContainer
+            onClick={handleClick}
+            image={posts.sprites.back_default}
+            name={posts.name}
+          />
+        </main>
+      )}
+    </>
+  );
+}
+
+function CardContainer({ onClick, image, name }) {
+  return (
+    <div className="post-container" onClick={onClick}>
+      <img src={image} className="post-image" alt="pokemon" />
+      <p className="post-name">{name}</p>
     </div>
   );
+}
+
+async function fetchPokemon() {
+  const randomNumber = Math.floor(Math.random() * 18) + 1;
+  const api = `https://pokeapi.co/api/v2/pokemon/${randomNumber}`;
+  const response = await fetch(api);
+  const data = await response.json();
+  return data;
 }
 
 export default MemoryCard;

@@ -2,18 +2,14 @@ import { useState, useEffect } from "react";
 
 function MemoryCard() {
   const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   const handleClick = () => {
     fetchPokemon(8).then((data) => {
-      setLoading(false);
       setPosts(data);
-      console.log(data);
     });
   };
   useEffect(() => {
     fetchPokemon(8).then((data) => {
-      setLoading(false);
       setPosts(data);
       console.log(data);
       handleClick();
@@ -23,7 +19,7 @@ function MemoryCard() {
   return (
     <>
       {posts.length === 0 ? (
-        <h1>Fetching...</h1>
+        <h1>Loading...</h1>
       ) : (
         <main className="main-body">
           {posts.map((pokemon) => (
@@ -44,8 +40,12 @@ function MemoryCard() {
 function CardContainer({ onClick, image, name, id, keyId }) {
   return (
     <div key={keyId} id={id} className="post-container" onClick={onClick}>
-      <img src={image} className="post-image" alt="pokemon" />
-      <p className="post-name">{name}</p>
+      <div className="post-image-container">
+        <img src={image} alt={name} className="post-image" />
+      </div>
+      <div className="post-name-container">
+        <p className="post-name">{name}</p>
+      </div>
     </div>
   );
 }

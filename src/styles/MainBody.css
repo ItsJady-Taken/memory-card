@@ -1,3 +1,5 @@
+/* FIX THE DESIGN */
+
 .main-body {
   display: flex;
   flex-wrap: wrap;
@@ -23,9 +25,9 @@
 }
 
 .post-image-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  flex: 1;
+  border: 1px solid #ccc;
+  border-radius: 50%;
   width: 50%;
   height: 50%;
 }
@@ -34,6 +36,11 @@
   width: 100%;
   height: auto;
   margin-bottom: 10px;
+}
+
+.post-name-container {
+  flex: 1;
+  border: 1px solid #ccc;
 }
 
 .post-name {

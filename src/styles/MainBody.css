@@ -11,10 +11,11 @@
   flex-direction: column;
   align-items: center;
   border: 1px solid #ccc;
-  border-radius: 80%;
+  background: linear-gradient(145deg, #ffffff, #dbd9d9, rgb(189, 189, 189));
+  box-shadow: 0 0 10px rgba(182, 182, 182, 0.685);
+  border-radius: 50%;
   width: 280px;
   height: 300px;
-  /* padding: 10px; */
   margin: 10px;
   cursor: pointer;
   transition: transform 0.3s ease;
@@ -22,14 +23,18 @@
 
 .post-container:hover {
   transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.685);
 }
 
 .post-image-container {
   flex: 1;
-  border: 1px solid #ccc;
-  border-radius: 50%;
+  border-bottom: 4px solid #2e2e2e;
+  background: linear-gradient(145deg, #ff1a1a, #ff1a1a, rgb(199, 9, 9));
+  border-top-right-radius: 200px;
+  border-top-left-radius: 200px;
   width: 50%;
-  height: 50%;
+  height: auto;
+  padding: 0 72px;
 }
 
 .post-image {
@@ -40,12 +45,21 @@
 
 .post-name-container {
   flex: 1;
-  border: 1px solid #ccc;
+  border-top: 4px solid #2e2e2e;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
 }
 
 .post-name {
-  background-color: red;
-  height: 50;
-  width: 100px;
+  font-family: "Press Start 2P", monospace;
+  font-size: 16px;
+  color: #2e2e2e;
   text-align: center;
+  margin: 0;
+  padding: 0;
 }

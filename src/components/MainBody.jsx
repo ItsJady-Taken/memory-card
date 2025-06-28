@@ -18,6 +18,10 @@ function MemoryCard() {
 
   return (
     <>
+      <aside className="score-board">
+        <p>Score: 0</p>
+        <p>Best Score: 0</p>
+      </aside>
       {posts.length === 0 ? (
         <h1>Loading...</h1>
       ) : (
@@ -54,7 +58,7 @@ async function fetchPokemon(count) {
   const pokemonIds = [];
 
   while (pokemonIds.length < count) {
-    const randomId = Math.floor(Math.random() * 24) + 1;
+    const randomId = Math.floor(Math.random() * 20) + 1;
     if (!pokemonIds.includes(randomId)) {
       pokemonIds.push(randomId);
     }

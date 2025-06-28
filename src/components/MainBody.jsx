@@ -2,25 +2,38 @@ import { useState, useEffect } from "react";
 
 function MemoryCard() {
   const [posts, setPosts] = useState([]);
+  const [trackId, setTrackId] = useState([]);
+  const [score, setScore] = useState(0);
+  const [bestScore, setBestScore] = useState(0);
 
   const handleClick = () => {
     fetchPokemon(8).then((data) => {
       setPosts(data);
     });
   };
+  const handleScore = (pokemonId) => {
+    setTrackId([...trackId, pokemonId]);
+    if (trackId.includes(pokemonId)) {
+      setScore(0);
+      setTrackId([]);
+    } else {
+      setScore(score + 1);
+    }
+    setBestScore(score > bestScore ? score : bestScore);
+  };
+
   useEffect(() => {
     fetchPokemon(8).then((data) => {
       setPosts(data);
-      console.log(data);
-      handleClick();
+      // console.log(data);
     });
   }, []);
 
   return (
     <>
       <aside className="score-board">
-        <p>Score: 0</p>
-        <p>Best Score: 0</p>
+        <p>Score: {score}</p>
+        <p>Best Score: {bestScore}</p>
       </aside>
       {posts.length === 0 ? (
         <h1>Loading...</h1>
@@ -30,7 +43,10 @@ function MemoryCard() {
             <CardContainer
               id={pokemon.id}
               key={pokemon.id}
-              onClick={handleClick}
+              onClick={() => {
+                handleClick();
+                handleScore(pokemon.id);
+              }}
               image={pokemon.sprites.front_default}
               name={pokemon.name}
             />

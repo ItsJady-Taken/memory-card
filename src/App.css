@@ -13,3 +13,9 @@
   font-size: 0.8rem;
   color: rgb(202, 202, 202);
 }
+
+.score-board {
+  font-family: "Press Start 2P", monospace;
+  font-size: 0.6rem;
+  color: rgb(202, 202, 202);
+}
